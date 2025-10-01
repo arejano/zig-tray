@@ -1,8 +1,9 @@
 .{
-    .name = "zig-tray",
+    .name = .zig_tray,
     .version = "0.0.1",
-    .minimum_zig_version = "0.12.0",
+    .minimum_zig_version = "0.15.1",
     .dependencies = .{},
+    .fingerprint = 0xf392474100acd9a,
     .paths = .{
         "src",
         "build.zig",

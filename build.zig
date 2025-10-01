@@ -21,7 +21,7 @@ pub fn build(b: *std.Build) !void {
     example(b, target, optimize, zigTray);
 }
 
-/// for generate docs
+//  for generate docs
 fn generateDocs(
     b: *std.Build,
     target: std.Build.ResolvedTarget,
@@ -29,9 +29,11 @@ fn generateDocs(
 ) void {
     const zig_tray_obj = b.addObject(.{
         .name = "zig-tray-obj",
-        .root_source_file = b.path("src/tray_windows.zig"),
-        .target = target,
-        .optimize = optimize,
+        .root_module = b.createModule(.{
+            .root_source_file = b.path("src/tray_windows.zig"),
+            .target = target,
+            .optimize = optimize,
+        }),
     });
 
     const docs_step = b.step("docs", "Generate docs");
@@ -52,10 +54,13 @@ fn example(b: *std.Build, target: std.Build.ResolvedTarget, optimize: std.builti
 
     // build example
     const exe = b.addExecutable(.{
-        .name = "zig-tray",
-        .root_source_file = b.path("example/main.zig"),
-        .target = target,
-        .optimize = optimize,
+        .name = "zigtray",
+        .root_module = b.createModule(.{
+            //
+            .root_source_file = b.path("example/main.zig"),
+            .target = target,
+            .optimize = optimize,
+        }),
     });
 
     exe.root_module.addImport("tray", module);

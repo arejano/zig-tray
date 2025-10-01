@@ -34,7 +34,7 @@ Add this:
 ```zig
 // To standardize development, maybe you should use `lazyDependency()` instead of `dependency()`
 // more info to see: https://ziglang.org/download/0.12.0/release-notes.html#toc-Lazy-Dependencies
-const zig_tray = b.dependency("zig-tray", .{
+const zig_tray = b.dependency("zig_tray", .{
     .target = target,
     .optimize = optimize,
 });
